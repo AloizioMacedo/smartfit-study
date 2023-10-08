@@ -1,6 +1,6 @@
 <li class="result">
   <p class="{{open_class}}"><strong>{{opened_status}}</strong></p>
-  <p>{{title}}</p>
+  <h1>{{title}}</h1>
   <p class="address">{{address|safe}}</p>
   <hr class="address-division" />
   <ul class="prohibs">
@@ -12,6 +12,14 @@
         width="60px"
         height="60px"
       />
+    </li>
+    {% endfor %}
+  </ul>
+  <ul class="times-available">
+    {% for schedule in schedules %}
+    <li>
+      <h2>{{schedule.weekdays}}</h2>
+      <p>{{schedule.hour}}</p>
     </li>
     {% endfor %}
   </ul>

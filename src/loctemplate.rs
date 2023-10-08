@@ -1,4 +1,4 @@
-use crate::location::Requirement;
+use crate::location::{Requirement, Schedule};
 use askama::Template;
 
 #[derive(Template)]
@@ -9,6 +9,7 @@ pub struct LocTemplate {
     pub title: String,
     pub address: String,
     pub prohibs: Vec<Prohib>,
+    pub schedules: Vec<Schedule>,
 }
 
 pub struct Prohib {

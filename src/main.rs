@@ -115,6 +115,7 @@ fn parse_location(location: Location) -> LocTemplate {
         title: location.title,
         address: location.content,
         prohibs,
+        schedules: location.schedules,
     }
 }
 
