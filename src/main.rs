@@ -1,5 +1,10 @@
 use askama::Template;
-use axum::{extract::Query, response::Html, routing::get, Json, Router};
+use axum::{
+    extract::Query,
+    response::Html,
+    routing::{get, post},
+    Json, Router,
+};
 use chrono::NaiveTime;
 use serde::{Deserialize, Serialize};
 use smartfit::{
@@ -32,6 +37,36 @@ enum DayPeriod {
 
 async fn get_results(Query(q): Query<QueryParams>) -> Html<String> {
     let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
+
+    let data: Data = serde_json::from_str(&file).unwrap();
+
+    let mut loctemplates = vec![];
+
+    for location in data.locations {
+        match location {
+            Loc::Location(loc) => {
+                if loc.matches_query(&q) {
+                    loctemplates.push(parse_location(loc))
+                }
+            }
+            _ => continue,
+        }
+    }
+
+    let rendered = loctemplates
+        .iter()
+        .map(|x| x.render().unwrap())
+        .collect::<Vec<String>>()
+        .join("");
+
+    Html(rendered)
+}
+
+async fn results(q: String) -> Html<String> {
+    println!("{}", q);
+
+    let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
+    let q: QueryParams = serde_json::from_str(&q).unwrap();
 
     let data: Data = serde_json::from_str(&file).unwrap();
 
@@ -173,7 +208,8 @@ async fn main() {
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
         .route("/", get(index))
         .route("/locations", get(get_locations))
-        .route("/results", get(get_results));
+        .route("/results", get(get_results))
+        .route("/results", post(results));
 
     // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
