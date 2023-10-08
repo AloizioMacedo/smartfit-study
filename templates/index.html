@@ -15,96 +15,117 @@
         height="140px"
       />
     </div>
-    <div class="explanation-container">
-      <h1>
-        REABERTURA <br />
-        SMART FIT
-      </h1>
-      <hr />
-      <p>
-        O horário de funcionamento das nossas unidades está seguindo os decretos
-        de cada município. Por isso, confira aqui se a sua unidade está aberta e
-        as medidas de segurança que estamos seguindo.
-      </p>
-    </div>
-    <div class="scheduling-container">
-      <div class="scheduling-prompt">
-        <p>Horário</p>
-        <p>Qual período quer treinar?</p>
-        <ul class="timeslots">
-          <li>
-            <div class="daytime-selection">
-              <input type="radio" name="daytime" id="morning" /><label
-                for="closed-units"
-                >Manhã</label
-              >
+    <div class="main-page">
+      <div class="explanation-container">
+        <h1>
+          REABERTURA <br />
+          SMART FIT
+        </h1>
+        <hr class="reabertura-divisor" />
+        <p>
+          O horário de funcionamento das nossas unidades está seguindo os
+          decretos de cada município. Por isso, confira aqui se a sua unidade
+          está aberta e as medidas de segurança que estamos seguindo.
+        </p>
+      </div>
+      <div class="scheduling-container">
+        <div class="scheduling-prompt">
+          <p>Horário</p>
+          <h1 class="period-question">Qual período quer treinar?</h1>
+          <ul class="timeslots">
+            <li>
+              <div class="daytime-selection">
+                <input type="radio" name="daytime" id="morning" /><label
+                  for="closed-units"
+                  >Manhã</label
+                >
+              </div>
+              <date>06:00 às 12:00</date>
+            </li>
+            <li>
+              <div class="daytime-selection">
+                <input type="radio" name="daytime" id="afternoon" /><label
+                  for="closed-units"
+                  >Tarde</label
+                >
+              </div>
+              <date>12:01 às 18:00</date>
+            </li>
+            <li>
+              <div class="daytime-selection">
+                <input type="radio" name="daytime" id="night" /><label
+                  for="closed-units"
+                  >Noite</label
+                >
+              </div>
+              <date>18:01 às 23:00</date>
+            </li>
+          </ul>
+          <div class="results-filter">
+            <div class="filter-checkbox">
+              <input
+                type="checkbox"
+                name="closed-units"
+                id="closed-units"
+              /><label for="closed-units">Exibir unidades fechadas</label>
             </div>
-            <date>06:00 às 12:00</date>
-          </li>
-          <li>
-            <div class="daytime-selection">
-              <input type="radio" name="daytime" id="afternoon" /><label
-                for="closed-units"
-                >Tarde</label
-              >
-            </div>
-            <date>12:01 às 18:00</date>
-          </li>
-          <li>
-            <div class="daytime-selection">
-              <input type="radio" name="daytime" id="night" /><label
-                for="closed-units"
-                >Noite</label
-              >
-            </div>
-            <date>18:01 às 23:00</date>
-          </li>
-        </ul>
-        <div class="results-filter">
-          <div class="filter-checkbox">
-            <input
-              type="checkbox"
-              name="closed-units"
-              id="closed-units"
-            /><label for="closed-units">Exibir unidades fechadas</label>
+            <p>
+              Resultados encontrados:
+              <strong class="number-of-results">0</strong>
+            </p>
           </div>
-          <p>Results found: 0</p>
+          <div class="find-units">
+            <button type="button" class="find-unit">ENCONTRAR UNIDADE</button>
+            <button type="button" class="clean">LIMPAR</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="prohibitions-container">
-      <ul class="prohibitions-defs">
-        <li>
-          <h1 class="place">Máscara</h1>
-          <ul class="recommendations">
-            <li>Obrigatório</li>
-            <li>Recomendado</li>
-          </ul>
-        </li>
-        <li>
-          <h1 class="place">Toalha</h1>
-          <ul class="recommendations">
-            <li>Obrigatório</li>
-            <li>Recomendado</li>
-          </ul>
-        </li>
-        <li>
-          <h1 class="place">Bebedouro</h1>
-          <ul class="recommendations">
-            <li>Parcial</li>
-            <li>Proibido</li>
-          </ul>
-        </li>
-        <li>
-          <h1 class="place">Vestiários</h1>
-          <ul class="recommendations">
-            <li>Liberado</li>
-            <li>Parcial</li>
-            <li>Fechado</li>
-          </ul>
-        </li>
-      </ul>
+      <div class="prohibitions-container">
+        <ul class="prohibitions-defs">
+          <li>
+            <h1 class="place">Máscara</h1>
+            <ul class="recommendations">
+              <li>Obrigatório</li>
+              <li>Recomendado</li>
+            </ul>
+          </li>
+          <li>
+            <h1 class="place">Toalha</h1>
+            <ul class="recommendations">
+              <li>Obrigatório</li>
+              <li>Recomendado</li>
+            </ul>
+          </li>
+          <li>
+            <h1 class="place">Bebedouro</h1>
+            <ul class="recommendations">
+              <li>Parcial</li>
+              <li>Proibido</li>
+            </ul>
+          </li>
+          <li>
+            <h1 class="place">Vestiários</h1>
+            <ul class="recommendations">
+              <li>Liberado</li>
+              <li>Parcial</li>
+              <li>Fechado</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
-  <footer></footer>
+  <footer>
+    <div class="footer-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/pt/f/f1/Smart-fit-logo.jpg"
+        alt="smart-fit-logo"
+        width="120px"
+        height="70px"
+      />
+    </div>
+    <div class="footer-fine-print">
+      <small>Todos os direitos reservados - 2020</small>
+    </div>
+  </footer>
 </html>
