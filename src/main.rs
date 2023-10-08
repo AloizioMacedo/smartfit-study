@@ -134,7 +134,7 @@ impl QueryMatch for Location {
                 let parsed = parse_interval(&schedule.hour);
                 if let Some(parsed) = parsed {
                     parsed.0 <= NaiveTime::parse_from_str("12h00", "%Hh%M").unwrap()
-                        && parsed.1 >= NaiveTime::parse_from_str("6h00", "%Hh%M").unwrap()
+                        || parsed.1 >= NaiveTime::parse_from_str("6h00", "%Hh%M").unwrap()
                 } else {
                     false
                 }
@@ -144,7 +144,7 @@ impl QueryMatch for Location {
 
                 if let Some(parsed) = parsed {
                     parsed.0 <= NaiveTime::parse_from_str("18h00", "%Hh%M").unwrap()
-                        && parsed.1 >= NaiveTime::parse_from_str("12h01", "%Hh%M").unwrap()
+                        || parsed.1 >= NaiveTime::parse_from_str("12h01", "%Hh%M").unwrap()
                 } else {
                     false
                 }
@@ -154,7 +154,7 @@ impl QueryMatch for Location {
 
                 if let Some(parsed) = parsed {
                     parsed.0 <= NaiveTime::parse_from_str("23h00", "%Hh%M").unwrap()
-                        && parsed.1 >= NaiveTime::parse_from_str("18h01", "%Hh%M").unwrap()
+                        || parsed.1 >= NaiveTime::parse_from_str("18h01", "%Hh%M").unwrap()
                 } else {
                     false
                 }
