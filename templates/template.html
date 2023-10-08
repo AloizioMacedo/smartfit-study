@@ -42,28 +42,34 @@
           <ul class="timeslots">
             <li>
               <div class="daytime-selection">
-                <input type="radio" name="day_period" value="morning" /><label
-                  for="day_period"
-                  >Manhã</label
-                >
+                <input
+                  type="radio"
+                  name="day_period"
+                  value="morning"
+                  class="daytime-radio"
+                /><label for="day_period" class="daytime-label">Manhã</label>
               </div>
               <date>06:00 às 12:00</date>
             </li>
             <li>
               <div class="daytime-selection">
-                <input type="radio" name="day_period" value="afternoon" /><label
-                  for="day_period"
-                  >Tarde</label
-                >
+                <input
+                  type="radio"
+                  name="day_period"
+                  value="afternoon"
+                  class="daytime-radio"
+                /><label for="day_period" class="daytime-label">Tarde</label>
               </div>
               <date>12:01 às 18:00</date>
             </li>
             <li>
               <div class="daytime-selection">
-                <input type="radio" name="day_period" value="evening" /><label
-                  for="day_period"
-                  >Noite</label
-                >
+                <input
+                  type="radio"
+                  name="day_period"
+                  value="evening"
+                  class="daytime-radio"
+                /><label for="day_period" class="daytime-label">Noite</label>
               </div>
               <date>18:01 às 23:00</date>
             </li>
@@ -74,7 +80,10 @@
                 type="checkbox"
                 name="show_closed"
                 id="closed-units"
-              /><label for="closed-units">Exibir unidades fechadas</label>
+                class="closed-units-checkbox"
+              /><label for="closed-units" class="closed-units-filter"
+                >Exibir unidades fechadas</label
+              >
             </div>
             <p>
               Resultados encontrados:

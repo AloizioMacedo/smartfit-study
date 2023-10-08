@@ -208,3 +208,26 @@ footer {
   padding: 10px;
   width: max-content;
 }
+
+.daytime-selection {
+  display: flex;
+  align-content: center;
+}
+
+.daytime-label {
+  padding-left: 10px;
+}
+
+.closed-units-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.closed-units-filter {
+  padding-left: 10px;
+}
+
+.daytime-radio {
+  width: 20px;
+  height: 20px;
+}
