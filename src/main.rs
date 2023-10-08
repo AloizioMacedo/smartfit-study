@@ -28,7 +28,7 @@ enum DayPeriod {
     Evening,
 }
 
-fn get_results(Query(q): Query<QueryParams>) -> Vec<LocTemplate> {
+async fn get_results(Query(q): Query<QueryParams>) -> Vec<LocTemplate> {
     let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
 
     let data: Data = serde_json::from_str(&file).unwrap();

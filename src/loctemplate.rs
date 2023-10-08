@@ -4,8 +4,8 @@ use askama::Template;
 #[derive(Template)]
 #[template(path = "result.html")]
 pub struct LocTemplate {
-    pub open_class: &'static str,
     pub opened_status: &'static str,
+    pub open_class: &'static str,
     pub title: String,
     pub address: String,
     pub prohibs: Vec<Prohib>,
@@ -14,27 +14,6 @@ pub struct LocTemplate {
 pub struct Prohib {
     pub prohib_source: String,
     pub alt: String,
-}
-
-enum OpenStatus {
-    Open,
-    Closed,
-}
-
-impl OpenStatus {
-    fn status(&self) -> &'static str {
-        match self {
-            OpenStatus::Open => "Aberto",
-            OpenStatus::Closed => "Fechado",
-        }
-    }
-
-    fn class(&self) -> &'static str {
-        match self {
-            OpenStatus::Open => "open-facility",
-            OpenStatus::Closed => "closed-facility",
-        }
-    }
 }
 
 pub enum ProhibObj {
