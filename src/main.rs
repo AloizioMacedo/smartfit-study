@@ -1,4 +1,5 @@
-use axum::{extract::Query, routing::get, Json, Router};
+use askama::Template;
+use axum::{extract::Query, response::Html, routing::get, Json, Router};
 use chrono::NaiveTime;
 use serde::{Deserialize, Serialize};
 use smartfit::{
@@ -28,7 +29,7 @@ enum DayPeriod {
     Evening,
 }
 
-async fn get_results(Query(q): Query<QueryParams>) -> Vec<LocTemplate> {
+async fn get_results(Query(q): Query<QueryParams>) -> Html<String> {
     let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
 
     let data: Data = serde_json::from_str(&file).unwrap();
@@ -46,7 +47,13 @@ async fn get_results(Query(q): Query<QueryParams>) -> Vec<LocTemplate> {
         }
     }
 
-    loctemplates
+    let rendered = loctemplates
+        .iter()
+        .map(|x| x.render().unwrap())
+        .collect::<Vec<String>>()
+        .join("");
+
+    Html(rendered)
 }
 
 fn parse_location(location: Location) -> LocTemplate {
@@ -111,36 +118,49 @@ impl QueryMatch for Location {
 
         match q.day_period {
             DayPeriod::Morning => self.schedules.iter().any(|schedule| {
-                parse_interval(&schedule.hour).0
-                    <= NaiveTime::parse_from_str("12h00", "%Hh%M").unwrap()
-                    && parse_interval(&schedule.hour).1
-                        >= NaiveTime::parse_from_str("6h00", "%Hh%M").unwrap()
+                let parsed = parse_interval(&schedule.hour);
+                if let Some(parsed) = parsed {
+                    parsed.0 <= NaiveTime::parse_from_str("12h00", "%Hh%M").unwrap()
+                        && parsed.1 >= NaiveTime::parse_from_str("6h00", "%Hh%M").unwrap()
+                } else {
+                    false
+                }
             }),
             DayPeriod::Afternoon => self.schedules.iter().any(|schedule| {
-                parse_interval(&schedule.hour).0
-                    <= NaiveTime::parse_from_str("18h00", "%Hh%M").unwrap()
-                    && parse_interval(&schedule.hour).1
-                        >= NaiveTime::parse_from_str("12h01", "%Hh%M").unwrap()
+                let parsed = parse_interval(&schedule.hour);
+
+                if let Some(parsed) = parsed {
+                    parsed.0 <= NaiveTime::parse_from_str("18h00", "%Hh%M").unwrap()
+                        && parsed.1 >= NaiveTime::parse_from_str("12h01", "%Hh%M").unwrap()
+                } else {
+                    false
+                }
             }),
             DayPeriod::Evening => self.schedules.iter().any(|schedule| {
-                parse_interval(&schedule.hour).0
-                    <= NaiveTime::parse_from_str("23h00", "%Hh%M").unwrap()
-                    && parse_interval(&schedule.hour).1
-                        >= NaiveTime::parse_from_str("18h01", "%Hh%M").unwrap()
+                let parsed = parse_interval(&schedule.hour);
+
+                if let Some(parsed) = parsed {
+                    parsed.0 <= NaiveTime::parse_from_str("23h00", "%Hh%M").unwrap()
+                        && parsed.1 >= NaiveTime::parse_from_str("18h01", "%Hh%M").unwrap()
+                } else {
+                    false
+                }
             }),
         }
     }
 }
 
-fn parse_interval(interval: &str) -> (NaiveTime, NaiveTime) {
+fn parse_interval(interval: &str) -> Option<(NaiveTime, NaiveTime)> {
     match interval.split(' ').collect::<Vec<&str>>()[..] {
-        [x, _, y] => (
-            NaiveTime::parse_from_str(x, "%Hh%M")
-                .unwrap_or_else(|_| NaiveTime::parse_from_str(x, "%Hh").unwrap()),
-            NaiveTime::parse_from_str(y, "%Hh%M")
-                .unwrap_or_else(|_| NaiveTime::parse_from_str(x, "%Hh").unwrap()),
-        ),
-        _ => panic!(),
+        [x, _, y] => Some((
+            NaiveTime::parse_from_str(x, "%Hh%M").unwrap_or_else(|_| {
+                NaiveTime::from_hms_opt(x[0..x.len() - 1].parse().unwrap(), 0, 0).unwrap()
+            }),
+            NaiveTime::parse_from_str(y, "%Hh%M").unwrap_or_else(|_| {
+                NaiveTime::from_hms_opt(x[0..x.len() - 1].parse().unwrap(), 0, 0).unwrap()
+            }),
+        )),
+        _ => None,
     }
 }
 
@@ -149,7 +169,8 @@ async fn main() {
     // build our application with a single route
     let app = Router::new()
         .route("/", get(|| async { "Hello, World!" }))
-        .route("/locations", get(get_locations));
+        .route("/locations", get(get_locations))
+        .route("/results", get(get_results));
 
     // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
@@ -160,11 +181,11 @@ async fn main() {
 
 #[cfg(test)]
 mod tests {
+
     #[test]
     fn test_chrono() {
         let x = chrono::NaiveTime::parse_from_str("06h30", "%Hh%M").unwrap();
         let y = chrono::NaiveTime::parse_from_str("06h30", "%Hh%M").unwrap();
-        let z = chrono::NaiveTime::parse_from_str("06h", "%Hh%M").unwrap();
         println!("{:?}", x >= y);
     }
 }
