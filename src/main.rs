@@ -36,7 +36,7 @@ async fn main() {
 }
 
 async fn index() -> Html<String> {
-    let file = std::fs::read_to_string("templates/template.html")
+    let file = std::fs::read_to_string("templates/index.html")
         .expect("Should be able to get template.html");
 
     Html(file)

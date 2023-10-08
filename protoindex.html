@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
   </head>
   <body>
     <div class="logo">
@@ -30,46 +29,34 @@
         </p>
       </div>
       <div class="scheduling-container">
-        <form
-          class="scheduling-prompt"
-          hx-get="/results"
-          hx-target="#results"
-          hx-swap="innerHTML"
-        >
+        <div class="scheduling-prompt">
           <p>Horário</p>
-
           <h1 class="period-question">Qual período quer treinar?</h1>
           <ul class="timeslots">
             <li>
               <div class="daytime-selection">
-                <input
-                  type="radio"
-                  name="day_period"
-                  value="morning"
-                  class="daytime-radio"
-                /><label for="day_period" class="daytime-label">Manhã</label>
+                <input type="radio" name="daytime" id="morning" /><label
+                  for="closed-units"
+                  >Manhã</label
+                >
               </div>
               <date>06:00 às 12:00</date>
             </li>
             <li>
               <div class="daytime-selection">
-                <input
-                  type="radio"
-                  name="day_period"
-                  value="afternoon"
-                  class="daytime-radio"
-                /><label for="day_period" class="daytime-label">Tarde</label>
+                <input type="radio" name="daytime" id="afternoon" /><label
+                  for="closed-units"
+                  >Tarde</label
+                >
               </div>
               <date>12:01 às 18:00</date>
             </li>
             <li>
               <div class="daytime-selection">
-                <input
-                  type="radio"
-                  name="day_period"
-                  value="evening"
-                  class="daytime-radio"
-                /><label for="day_period" class="daytime-label">Noite</label>
+                <input type="radio" name="daytime" id="night" /><label
+                  for="closed-units"
+                  >Noite</label
+                >
               </div>
               <date>18:01 às 23:00</date>
             </li>
@@ -78,33 +65,20 @@
             <div class="filter-checkbox">
               <input
                 type="checkbox"
-                name="show_closed"
+                name="closed-units"
                 id="closed-units"
-                class="closed-units-checkbox"
-              /><label for="closed-units" class="closed-units-filter"
-                >Exibir unidades fechadas</label
-              >
+              /><label for="closed-units">Exibir unidades fechadas</label>
             </div>
             <p>
               Resultados encontrados:
-              <strong class="number-of-results" id="number-of-results"
-                >0</strong
-              >
+              <strong class="number-of-results">0</strong>
             </p>
           </div>
           <div class="find-units">
-            <button type="submit" class="find-unit">ENCONTRAR UNIDADE</button>
-            <button
-              type="button"
-              class="clean"
-              hx-get="/clean"
-              hx-target="#results"
-              hx-swap="innerHTML"
-            >
-              LIMPAR
-            </button>
+            <button type="button" class="find-unit">ENCONTRAR UNIDADE</button>
+            <button type="button" class="clean">LIMPAR</button>
           </div>
-        </form>
+        </div>
       </div>
       <div class="prohibitions-container">
         <ul class="prohibitions-defs">
@@ -232,7 +206,91 @@
         </ul>
       </div>
       <div class="results-container">
-        <ul class="results" id="results"></ul>
+        <ul class="results">
+          <li class="result">
+            <p class="open-facility"><strong>Aberto</strong></p>
+            <p>Vicente Linhares</p>
+            <p class="address">
+              Rua Tibúrcio Cavalcante, 1885 - Meireles <br />
+              Fortaleza, CE
+            </p>
+            <hr class="address-division" />
+            <ul class="prohibs">
+              <li>
+                <img
+                  src="images/required-mask.png"
+                  alt="required-mask"
+                  width="60px"
+                  height="60px"
+                />
+              </li>
+              <li>
+                <img
+                  src="images/required-towel.png"
+                  alt="required-towel"
+                  width="60px"
+                  height="60px"
+                />
+              </li>
+              <li>
+                <img
+                  src="images/partial-fountain.png"
+                  alt="partial-fountain"
+                  width="60px"
+                  height="60px"
+                />
+              </li>
+              <li>
+                <img
+                  src="images/forbidden-lockerroom.png"
+                  alt="forbidden-lockerroom"
+                  width="60px"
+                  height="60px"
+                />
+              </li>
+            </ul>
+          </li>
+          <li class="result">
+            <p class="closed-facility"><strong>Fechado</strong></p>
+            <p>Vicente Carrão</p>
+            <p class="address">
+              Av, Guilherme Giorgi, 1460, Vila Carrão<br />
+              São Paulo - SP
+            </p>
+            <hr class="address-division" />
+            <ul class="prohibs"></ul>
+          </li>
+          <li class="result">
+            <p class="closed-facility"><strong>Fechado</strong></p>
+            <p>Vicente Carrão</p>
+            <p class="address">
+              Av, Guilherme Giorgi, 1460, Vila Carrão<br />
+              São Paulo - SP
+            </p>
+            <hr class="address-division" />
+            <ul class="prohibs"></ul>
+          </li>
+          <li class="result">
+            <p class="closed-facility"><strong>Fechado</strong></p>
+            <p>Vicente Carrão</p>
+            <p class="address">
+              Av, Guilherme Giorgi, 1460, Vila Carrão<br />
+              São Paulo - SP
+            </p>
+            <hr class="address-division" />
+            <ul class="prohibs"></ul>
+          </li>
+          <li class="result">
+            <p class="closed-facility"><strong>Fechado</strong></p>
+            <p>Vicente Carrão</p>
+            <p class="address">
+              Av, Guilherme Giorgi, 1460, Vila Carrão<br />
+              São Paulo - SP
+            </p>
+            <hr class="address-division" />
+            <ul class="prohibs"></ul>
+          </li>
+        </ul>
       </div>
     </div>
   </body>
