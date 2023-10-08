@@ -159,11 +159,12 @@ footer {
   display: grid;
   grid-template-columns: 32% 32% 32%;
   grid-gap: 2%;
+  grid-row-gap: 10px;
 }
 
 .result {
   background-color: #f4f4f4;
-  height: 450px;
+  height: auto;
   width: 100%;
   padding: 20px;
   border-radius: 8px;
@@ -203,7 +204,7 @@ footer {
   grid-template-columns: 50% 50%;
 }
 
-.times-available li * {
+.times-available li h2 {
   padding: 10px;
   width: max-content;
 }
