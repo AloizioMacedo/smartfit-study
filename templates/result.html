@@ -1,10 +1,11 @@
+{% for result in results %}
 <li class="result">
-  <p class="{{open_class}}"><strong>{{opened_status}}</strong></p>
-  <h1>{{title}}</h1>
-  <p class="address">{{address|safe}}</p>
+  <p class="{{result.open_class}}"><strong>{{result.opened_status}}</strong></p>
+  <h1>{{result.title}}</h1>
+  <p class="address">{{result.address|safe}}</p>
   <hr class="address-division" />
   <ul class="prohibs">
-    {% for prohib in prohibs %}
+    {% for prohib in result.prohibs %}
     <li>
       <img
         src="{{prohib.prohib_source}}"
@@ -16,7 +17,7 @@
     {% endfor %}
   </ul>
   <ul class="times-available">
-    {% for schedule in schedules %}
+    {% for schedule in result.schedules %}
     <li>
       <h2>{{schedule.weekdays}}</h2>
       <p>{{schedule.hour}}</p>
@@ -24,3 +25,7 @@
     {% endfor %}
   </ul>
 </li>
+{% endfor %}
+<strong class="number-of-results" id="number-of-results" hx-swap-oob="true"
+  >{{results.len()}}</strong
+>

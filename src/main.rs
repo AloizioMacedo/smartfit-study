@@ -4,7 +4,7 @@ use chrono::NaiveTime;
 use serde::{Deserialize, Serialize};
 use smartfit::{
     location::{Data, Loc, Location},
-    loctemplate::{get_alt, get_source, LocTemplate, Prohib, ProhibObj},
+    loctemplate::{get_alt, get_source, LocTemplate, Prohib, ProhibObj, ResultsTemplate},
 };
 use tower_http::services::{ServeDir, ServeFile};
 
@@ -59,11 +59,11 @@ async fn get_results(Query(q): Query<QueryParams>) -> Html<String> {
         }
     }
 
-    let rendered = loctemplates
-        .iter()
-        .map(|x| x.render().unwrap())
-        .collect::<Vec<String>>()
-        .join("");
+    let results_template = ResultsTemplate {
+        results: loctemplates,
+    };
+
+    let rendered = results_template.render().unwrap();
 
     Html(rendered)
 }

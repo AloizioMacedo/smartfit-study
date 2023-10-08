@@ -3,6 +3,10 @@ use askama::Template;
 
 #[derive(Template)]
 #[template(path = "result.html")]
+pub struct ResultsTemplate {
+    pub results: Vec<LocTemplate>,
+}
+
 pub struct LocTemplate {
     pub opened_status: &'static str,
     pub open_class: &'static str,
