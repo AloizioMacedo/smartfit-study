@@ -3,17 +3,17 @@ use askama::Template;
 
 #[derive(Template)]
 #[template(path = "result.html")]
-struct LocTemplate {
-    open_class: &'static str,
-    opened_status: &'static str,
-    title: String,
-    address: String,
-    prohibs: Vec<Prohib>,
+pub struct LocTemplate {
+    pub open_class: &'static str,
+    pub opened_status: &'static str,
+    pub title: String,
+    pub address: String,
+    pub prohibs: Vec<Prohib>,
 }
 
-struct Prohib {
-    prohib_source: String,
-    alt: &'static str,
+pub struct Prohib {
+    pub prohib_source: String,
+    pub alt: String,
 }
 
 enum OpenStatus {
@@ -63,10 +63,19 @@ impl Requirement {
             Requirement::NotAllowed => "forbidden",
             Requirement::Recommended => "recommended",
             Requirement::Allowed => "required",
+            Requirement::Closed => "forbidden",
         }
     }
 }
 
 pub fn get_source(prohib_obj: &ProhibObj, req: &Requirement) -> String {
+    "images/".to_string()
+        + req.get_source_component()
+        + "-"
+        + prohib_obj.get_source_component()
+        + ".png"
+}
+
+pub fn get_alt(prohib_obj: &ProhibObj, req: &Requirement) -> String {
     req.get_source_component().to_string() + "-" + prohib_obj.get_source_component()
 }
