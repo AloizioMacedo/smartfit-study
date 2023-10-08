@@ -1,10 +1,5 @@
 use askama::Template;
-use axum::{
-    extract::Query,
-    response::Html,
-    routing::{get, post},
-    Json, Router,
-};
+use axum::{extract::Query, response::Html, routing::get, Json, Router};
 use chrono::NaiveTime;
 use serde::{Deserialize, Serialize};
 use smartfit::{
@@ -21,13 +16,24 @@ async fn get_locations() -> Json<Vec<Loc>> {
     Json(data.locations)
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 struct QueryParams {
     day_period: DayPeriod,
-    show_closed: bool,
+
+    #[serde(default)]
+    show_closed: Switch,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Default)]
+#[serde(rename_all = "lowercase")]
+enum Switch {
+    On,
+
+    #[default]
+    Off,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "lowercase")]
 enum DayPeriod {
     Morning,
@@ -37,36 +43,6 @@ enum DayPeriod {
 
 async fn get_results(Query(q): Query<QueryParams>) -> Html<String> {
     let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
-
-    let data: Data = serde_json::from_str(&file).unwrap();
-
-    let mut loctemplates = vec![];
-
-    for location in data.locations {
-        match location {
-            Loc::Location(loc) => {
-                if loc.matches_query(&q) {
-                    loctemplates.push(parse_location(loc))
-                }
-            }
-            _ => continue,
-        }
-    }
-
-    let rendered = loctemplates
-        .iter()
-        .map(|x| x.render().unwrap())
-        .collect::<Vec<String>>()
-        .join("");
-
-    Html(rendered)
-}
-
-async fn results(q: String) -> Html<String> {
-    println!("{}", q);
-
-    let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
-    let q: QueryParams = serde_json::from_str(&q).unwrap();
 
     let data: Data = serde_json::from_str(&file).unwrap();
 
@@ -148,7 +124,7 @@ trait QueryMatch {
 
 impl QueryMatch for Location {
     fn matches_query(&self, q: &QueryParams) -> bool {
-        if !q.show_closed && !self.opened {
+        if matches!(q.show_closed, Switch::Off) && !self.opened {
             return false;
         }
 
@@ -208,8 +184,7 @@ async fn main() {
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
         .route("/", get(index))
         .route("/locations", get(get_locations))
-        .route("/results", get(get_results))
-        .route("/results", post(results));
+        .route("/results", get(get_results));
 
     // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())

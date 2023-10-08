@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
   </head>
   <body>
     <div class="logo">
@@ -29,14 +30,20 @@
         </p>
       </div>
       <div class="scheduling-container">
-        <div class="scheduling-prompt">
+        <form
+          class="scheduling-prompt"
+          hx-get="/results"
+          hx-target="#results"
+          hx-swap="innerHTML"
+        >
           <p>Horário</p>
+
           <h1 class="period-question">Qual período quer treinar?</h1>
           <ul class="timeslots">
             <li>
               <div class="daytime-selection">
-                <input type="radio" name="daytime" id="morning" /><label
-                  for="closed-units"
+                <input type="radio" name="day_period" value="morning" /><label
+                  for="day_period"
                   >Manhã</label
                 >
               </div>
@@ -44,8 +51,8 @@
             </li>
             <li>
               <div class="daytime-selection">
-                <input type="radio" name="daytime" id="afternoon" /><label
-                  for="closed-units"
+                <input type="radio" name="day_period" value="afternoon" /><label
+                  for="day_period"
                   >Tarde</label
                 >
               </div>
@@ -53,8 +60,8 @@
             </li>
             <li>
               <div class="daytime-selection">
-                <input type="radio" name="daytime" id="night" /><label
-                  for="closed-units"
+                <input type="radio" name="day_period" value="evening" /><label
+                  for="day_period"
                   >Noite</label
                 >
               </div>
@@ -65,7 +72,7 @@
             <div class="filter-checkbox">
               <input
                 type="checkbox"
-                name="closed-units"
+                name="show_closed"
                 id="closed-units"
               /><label for="closed-units">Exibir unidades fechadas</label>
             </div>
@@ -75,10 +82,10 @@
             </p>
           </div>
           <div class="find-units">
-            <button type="button" class="find-unit">ENCONTRAR UNIDADE</button>
+            <button type="submit" class="find-unit">ENCONTRAR UNIDADE</button>
             <button type="button" class="clean">LIMPAR</button>
           </div>
-        </div>
+        </form>
       </div>
       <div class="prohibitions-container">
         <ul class="prohibitions-defs">
@@ -206,7 +213,7 @@
         </ul>
       </div>
       <div class="results-container">
-        <ul class="results"></ul>
+        <ul class="results" id="results"></ul>
       </div>
     </div>
   </body>
