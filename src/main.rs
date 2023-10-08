@@ -6,6 +6,7 @@ use smartfit::{
     location::{Data, Loc, Location},
     loctemplate::{get_alt, get_source, LocTemplate, Prohib, ProhibObj},
 };
+use tower_http::services::{ServeDir, ServeFile};
 
 async fn get_locations() -> Json<Vec<Loc>> {
     let file = std::fs::read_to_string("locations.json").expect("JSON file should be accessible");
@@ -168,7 +169,9 @@ fn parse_interval(interval: &str) -> Option<(NaiveTime, NaiveTime)> {
 async fn main() {
     // build our application with a single route
     let app = Router::new()
-        .route("/", get(|| async { "Hello, World!" }))
+        .nest_service("/images", ServeDir::new("images"))
+        .nest_service("/style.css", ServeFile::new("templates/style.css"))
+        .route("/", get(index))
         .route("/locations", get(get_locations))
         .route("/results", get(get_results));
 
@@ -177,6 +180,13 @@ async fn main() {
         .serve(app.into_make_service())
         .await
         .unwrap();
+}
+
+async fn index() -> Html<String> {
+    let file = std::fs::read_to_string("templates/template.html")
+        .expect("Should be able to get template.html");
+
+    Html(file)
 }
 
 #[cfg(test)]
