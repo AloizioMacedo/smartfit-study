@@ -79,7 +79,7 @@ body {
 }
 
 .period-question {
-  padding: 20px 5px;
+  padding: 30px 5px 20px 5px;
 }
 
 .prohibitions-defs {
@@ -230,4 +230,10 @@ footer {
 .daytime-radio {
   width: 20px;
   height: 20px;
+}
+
+.clock-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
