@@ -15,11 +15,25 @@ pub struct Location {
     pub title: String,
     pub content: String,
     pub opened: bool,
-    pub mask: String,
+    pub mask: Requirement,
     pub towel: String,
     pub fountain: String,
     pub locker_room: String,
     pub schedules: Vec<Schedule>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub enum Requirement {
+    #[serde(rename = "recommended")]
+    Recommended,
+    #[serde(rename = "required")]
+    Required,
+    #[serde(rename = "partial")]
+    Partial,
+    #[serde(rename = "allowed")]
+    Allowed,
+    #[serde(rename = "not_allowed")]
+    NotAllowed,
 }
 
 #[derive(Serialize, Deserialize)]
