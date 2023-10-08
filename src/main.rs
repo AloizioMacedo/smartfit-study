@@ -13,6 +13,10 @@ async fn get_locations() -> Json<Vec<Loc>> {
     Json(data.locations)
 }
 
+async fn clean() -> Html<&'static str> {
+    Html("")
+}
+
 #[tokio::main]
 async fn main() {
     // build our application with a single route
@@ -21,7 +25,8 @@ async fn main() {
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
         .route("/", get(index))
         .route("/locations", get(get_locations))
-        .route("/results", get(get_results));
+        .route("/results", get(get_results))
+        .route("/clean", get(clean));
 
     // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())

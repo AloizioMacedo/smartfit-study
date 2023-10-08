@@ -94,7 +94,15 @@
           </div>
           <div class="find-units">
             <button type="submit" class="find-unit">ENCONTRAR UNIDADE</button>
-            <button type="button" class="clean">LIMPAR</button>
+            <button
+              type="button"
+              class="clean"
+              hx-get="/clean"
+              hx-target="#results"
+              hx-swap="innerHTML"
+            >
+              LIMPAR
+            </button>
           </div>
         </form>
       </div>
