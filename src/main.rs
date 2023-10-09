@@ -14,7 +14,10 @@ async fn get_locations() -> Json<Vec<Loc>> {
 }
 
 async fn clean() -> Html<&'static str> {
-    Html("")
+    Html(
+        r#"<strong class="number-of-results"
+        id="number-of-results" hx-swap-oob="true">0</strong>"#,
+    )
 }
 
 #[tokio::main]
