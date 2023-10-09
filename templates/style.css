@@ -1,5 +1,27 @@
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/gotham-black.woff2");
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/gotham-bold.woff2");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/gotham-book.woff2");
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/gotham-light.woff2");
+  font-weight: light;
+}
+
 * {
-  font-family: sans-serif;
+  font-family: "Gotham", sans-serif;
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
@@ -76,9 +98,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: black;
 }
 
 .period-question {
+  font-size: larger;
   padding: 30px 5px 20px 5px;
 }
 
