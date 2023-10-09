@@ -26,7 +26,6 @@ async fn main() {
     let app = Router::new()
         .nest_service("/images", ServeDir::new("images"))
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
-        .nest_service("/mstyle.css", ServeFile::new("templates/mstyle.css"))
         .route("/", get(index))
         .route("/locations", get(get_locations))
         .route("/results", get(get_results))
