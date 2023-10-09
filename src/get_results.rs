@@ -166,7 +166,7 @@ fn parse_interval(interval: &str) -> Option<(NaiveTime, NaiveTime)> {
                 NaiveTime::from_hms_opt(x[0..x.len() - 1].parse().unwrap(), 0, 0).unwrap()
             }),
             NaiveTime::parse_from_str(y, "%Hh%M").unwrap_or_else(|_| {
-                NaiveTime::from_hms_opt(x[0..x.len() - 1].parse().unwrap(), 0, 0).unwrap()
+                NaiveTime::from_hms_opt(y[0..y.len() - 1].parse().unwrap(), 0, 0).unwrap()
             }),
         )),
         _ => None,
