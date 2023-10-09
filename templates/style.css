@@ -141,6 +141,7 @@ footer {
   height: 35px;
   background-color: #ffb610;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .clean {
@@ -148,6 +149,7 @@ footer {
   height: 35px;
   font-weight: bold;
   background-color: white;
+  cursor: pointer;
 }
 
 .results-container {
@@ -202,7 +204,6 @@ footer {
   list-style: none;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-row-gap: 15px;
 }
 
 .times-available li h2 {
