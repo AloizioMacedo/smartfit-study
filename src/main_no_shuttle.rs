@@ -20,9 +20,10 @@ async fn clean() -> Html<&'static str> {
     )
 }
 
-#[shuttle_runtime::main]
-async fn axum() -> shuttle_axum::ShuttleAxum {
-    let router = Router::new()
+#[tokio::main]
+async fn main() {
+    // build our application with a single route
+    let app = Router::new()
         .nest_service("/images", ServeDir::new("templates/images"))
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
         .nest_service("/fonts", ServeDir::new("templates/fonts"))
@@ -31,7 +32,11 @@ async fn axum() -> shuttle_axum::ShuttleAxum {
         .route("/results", get(get_results))
         .route("/clean", get(clean));
 
-    Ok(router.into())
+    // run it with hyper on localhost:3000
+    axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
+        .serve(app.into_make_service())
+        .await
+        .unwrap();
 }
 
 async fn index() -> Html<String> {

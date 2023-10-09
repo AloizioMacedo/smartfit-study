@@ -1,11 +1,15 @@
 [package]
-name = "smartfit"
+name = "aloizio-smartfit"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "smartfit"
+name = "aloizio-smartfit"
 path = "src/main.rs"
+
+[[bin]]
+name = "smartfit"
+path = "src/main_no_shuttle.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -14,6 +18,8 @@ askama = "0.12.1"
 axum = "0.6.20"
 chrono = "0.4.31"
 serde = { version = "1.0.188", features = ["derive"] }
+shuttle-axum = "0.28.0"
+shuttle-runtime = "0.28.0"
 serde_json = "1.0.107"
 tokio = { version = "1.32.0", features = ["macros", "full"] }
 tower-http = { version = "0.4.4", features = ["fs"] }

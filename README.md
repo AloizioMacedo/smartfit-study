@@ -19,7 +19,7 @@ If built as a Docker image, it weighs around 30 MB.
 You can run the project directly with
 
 ```bash
-cargo run
+cargo run --bin smartfit
 ```
 
 in the root of the repo in case you have [Rust](https://www.rust-lang.org/) installed.
