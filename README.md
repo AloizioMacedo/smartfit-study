@@ -6,6 +6,9 @@ It uses as motivation a
 [coding challenge](https://github.com/bioritmo/front-end-code-challenge-smartsite)
 from a brazilian fitness company called [SmartFit](https://www.smartfit.com.br).
 
+You can see it deployed with [Shuttle](https://www.shuttle.rs/)
+here: https://aloizio-smartfit.shuttleapp.rs/.
+
 # Technologies
 
 We use the templating engine [Askama](https://github.com/djc/askama) for Rust in order
