@@ -11,7 +11,6 @@ RUN cargo build --release
 RUN sed -i 's#dummy.rs#src/main.rs#' Cargo.toml
 
 COPY src src
-COPY images images
 COPY templates templates
 COPY locations.json locations.json
 COPY Cargo.lock .
@@ -24,7 +23,6 @@ RUN cargo build --release
 FROM gcr.io/distroless/cc
 COPY --from=builder /app/target/release/smartfit /app/smartfit
 COPY --from=builder /app/templates /app/templates
-COPY --from=builder /app/images /app/images
 COPY --from=builder /app/locations.json /app/locations.json
 
 WORKDIR /app

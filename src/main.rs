@@ -24,9 +24,9 @@ async fn clean() -> Html<&'static str> {
 async fn main() {
     // build our application with a single route
     let app = Router::new()
-        .nest_service("/images", ServeDir::new("images"))
+        .nest_service("/images", ServeDir::new("templates/images"))
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
-        .nest_service("/fonts", ServeDir::new("fonts"))
+        .nest_service("/fonts", ServeDir::new("templates/fonts"))
         .route("/", get(index))
         .route("/locations", get(get_locations))
         .route("/results", get(get_results))
