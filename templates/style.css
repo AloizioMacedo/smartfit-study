@@ -202,11 +202,12 @@ footer {
   list-style: none;
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-row-gap: 15px;
 }
 
 .times-available li h2 {
-  padding: 10px;
   width: max-content;
+  padding-block: 10px;
 }
 
 .daytime-selection {
