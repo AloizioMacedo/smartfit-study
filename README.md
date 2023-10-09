@@ -45,8 +45,7 @@ The interpretation that at first seems to make most sense is the following:
 > If the user marked a time slot X, then an entry should be showed
 > as long as X intersects any interval of hours of any schedule of that entry.
 
-However, with this interpretation, the filter ends up being useless: any selection of
-"morning", "afternoon" or "evening" gives the same entries.
+The code implements this implementation we just described.
 
-The other filter (the one about showing closed units) does something, even though
-it is very minor, as only three units seem to be closed in the provided file.
+The other filter (the one about showing closed units) has very minor impact,
+as only three units seem to be closed in the provided file.
