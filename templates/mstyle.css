@@ -1,0 +1,243 @@
+* {
+  font-family: sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0e0e0e;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  background-color: #0e0e0e;
+}
+
+.main-page {
+  padding-top: 70px;
+  padding-inline: 50px;
+  padding-bottom: 70px;
+  background-color: white;
+}
+
+.reabertura-divisor {
+  width: 75px;
+  height: 9px;
+  background-color: black;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.explanation-container {
+  background-color: white;
+}
+
+.prohibitions-container {
+  display: flex;
+  justify-content: center;
+}
+
+.scheduling-container {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  color: grey;
+}
+
+.scheduling-prompt {
+  padding: 10px;
+  border: 4px solid #f4f4f4;
+
+  border-radius: 8px;
+  width: 100%;
+  margin-block: 30px;
+}
+
+.timeslots {
+  list-style: none;
+}
+
+.timeslots li:last-child {
+  border-bottom: 3px solid #f5f5f5;
+}
+
+.timeslots li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 10px;
+  border-top: 3px solid #f5f5f5;
+}
+
+.results-filter {
+  padding: 40px 0px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.period-question {
+  padding: 30px 5px 20px 5px;
+}
+
+.prohibitions-defs {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  background-color: #f5f5f5;
+  justify-content: space-around;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.recommendations {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  padding: 0;
+}
+
+.recommendations li {
+  padding-inline: 5px;
+  text-align: center;
+}
+
+.rec-image {
+  display: flex;
+  justify-content: center;
+}
+
+.place {
+  text-align: center;
+}
+
+footer {
+  background-color: #0e0e0e;
+  color: white;
+  padding-bottom: 70px;
+}
+
+.footer-image {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-fine-print {
+  display: flex;
+  justify-content: center;
+}
+
+.find-units {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  gap: 15px;
+}
+
+.find-unit {
+  width: 240px;
+  height: 35px;
+  background-color: #ffb610;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.clean {
+  width: 240px;
+  height: 35px;
+  font-weight: bold;
+  background-color: white;
+  cursor: pointer;
+}
+
+.results-container {
+  margin-block: 40px;
+}
+
+.results {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.result {
+  background-color: #f4f4f4;
+  height: auto;
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.address {
+  color: grey;
+}
+
+.address-division {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #f4f4f4;
+}
+
+.prohibs {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.prohibs li {
+  text-align: center;
+}
+
+.open-facility {
+  color: green;
+}
+
+.closed-facility {
+  color: red;
+}
+
+.times-available {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.times-available li h2 {
+  width: max-content;
+  padding-block: 10px;
+}
+
+.daytime-selection {
+  display: flex;
+  align-content: center;
+}
+
+.daytime-label {
+  padding-left: 10px;
+}
+
+.closed-units-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.closed-units-filter {
+  padding-left: 10px;
+}
+
+.daytime-radio {
+  width: 20px;
+  height: 20px;
+}
+
+.clock-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
