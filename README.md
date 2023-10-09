@@ -12,7 +12,7 @@ We use the templating engine [Askama](https://github.com/djc/askama) for Rust in
 to build the HTML together with [HTMX](https://htmx.org/) when we update the page.
 The whole project runs as a single service running [Axum](https://github.com/tokio-rs/axum).
 
-If built as a Docker image, it weighs 29.5 MB.
+If built as a Docker image, it weighs around 30 MB.
 
 # How to run
 
