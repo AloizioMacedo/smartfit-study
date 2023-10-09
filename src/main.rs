@@ -28,7 +28,6 @@ async fn main() {
         .nest_service("/style.css", ServeFile::new("templates/style.css"))
         .nest_service("/mstyle.css", ServeFile::new("templates/mstyle.css"))
         .route("/", get(index))
-        .route("/m", get(mindex))
         .route("/locations", get(get_locations))
         .route("/results", get(get_results))
         .route("/clean", get(clean));
@@ -42,13 +41,6 @@ async fn main() {
 
 async fn index() -> Html<String> {
     let file = std::fs::read_to_string("templates/index.html")
-        .expect("Should be able to get template.html");
-
-    Html(file)
-}
-
-async fn mindex() -> Html<String> {
-    let file = std::fs::read_to_string("templates/mindex.html")
         .expect("Should be able to get template.html");
 
     Html(file)

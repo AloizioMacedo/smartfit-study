@@ -239,3 +239,61 @@ footer {
   align-items: center;
   gap: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .main-page {
+    padding-top: 70px;
+    padding-inline: 50px;
+    padding-bottom: 70px;
+    background-color: white;
+  }
+
+  .results-filter {
+    padding: 40px 0px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prohibitions-defs {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    background-color: #f5f5f5;
+    justify-content: space-around;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .recommendations {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+  }
+
+  .find-units {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 15px;
+  }
+
+  .results {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .result {
+    background-color: #f4f4f4;
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+  }
+}
