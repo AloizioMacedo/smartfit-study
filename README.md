@@ -27,12 +27,14 @@ cargo run --bin smartfit
 
 in the root of the repo in case you have [Rust](https://www.rust-lang.org/) installed.
 
-If you don't, you can build it as a Docker image and run it directly.
-
 The app gets served at port 3000, and the page can be accessed at "/".
 
-PS: In case you run it as a Docker container, remember to set the ports, e.g.
+If you don't have Rust, you can build it as a Docker image and run it directly as a
+container. In this case, remember to set the ports, e.g.
 `docker run -p 3000:3000 {name}`.
+
+PS: As mentioned in the introduction, you can see a deployed version of the app
+here: https://aloizio-smartfit.shuttleapp.rs/.
 
 # Commentary about the challenge
 
