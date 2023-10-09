@@ -51,6 +51,10 @@ pub async fn get_results(Query(q): Query<QueryParams>) -> Html<String> {
         }
     }
 
+    if loctemplates.is_empty() {
+        return Html("Nenhuma unidade encontrada".to_string());
+    }
+
     let results_template = ResultsTemplate {
         results: loctemplates,
     };
