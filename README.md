@@ -30,3 +30,18 @@ The app gets served at port 3000, and the page can be accessed at "/".
 
 PS: In case you run it as a Docker container, remember to set the ports, e.g.
 `docker run -p 3000:3000 {name}`.
+
+# Commentary about the challenge
+
+It is unclear how the hours filter that the challenge proposes is supposed to work.
+
+The interpretation that at first seems to make most sense is the following:
+
+> If the user marked a time slot X, then an entry should be showed
+> as long as X intersects any interval of hours of any schedule of that entry.
+
+However, with this interpretation, the filter ends up being useless: any selection of
+"morning", "afternoon" or "evening" gives the same entries.
+
+The other filter (the one about showing closed units) does something, even though
+it is very minor, as only three units seem to be closed in the provided file.
