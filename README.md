@@ -49,3 +49,9 @@ The code implements this implementation we just described.
 
 The other filter (the one about showing closed units) has very minor impact,
 as only three units seem to be closed in the provided file.
+
+# Go version
+
+I've also developed a version with [Go](https://go.dev/), take
+a look in [this repository](https://github.com/AloizioMacedo/smartfit-study-go)
+in case you are interested.
